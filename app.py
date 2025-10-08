@@ -309,7 +309,7 @@ def update_dashboard(year, dept_name):
     try:
         if not gdf_year.empty:
             gjson = json.loads(gdf_year.to_json())
-            fig_map = px.choropleth(
+            fig_map = px.choropleth_mapbox(
                 gdf_year,
                 geojson=gjson,
                 locations="codigo_departamento",
@@ -464,6 +464,7 @@ def update_dashboard(year, dept_name):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run_server(debug=True, host="0.0.0.0", port=port)
+
 
 
 
