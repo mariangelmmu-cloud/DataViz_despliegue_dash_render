@@ -19,8 +19,7 @@ import plotly.express as px
 # CARGA DE DATOS
 # ---------------------------------------------------
 warnings.filterwarnings("ignore") 
-shapefile_path = "data/MGN_DPTO_POLITICO.shp"
-gdf = gpd.read_file(shapefile_path, encoding='utf-8')
+gdf = gpd.read_file("colombia_simplificado.geojson")
 
 df = pd.read_csv("data/MEN_ESTADISTICAS_EN_EDUCACION.csv", sep=",")
 
@@ -465,5 +464,6 @@ def update_dashboard(year, dept_name):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run_server(debug=True, host="0.0.0.0", port=port)
+
 
 
