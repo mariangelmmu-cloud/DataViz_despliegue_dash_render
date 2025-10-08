@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: dashboard-desercion
+    env: python
+    region: oregon   # puedes cambiarlo a 'frankfurt' si prefieres Europa
+    buildCommand: |
+      pip install --upgrade pip setuptools wheel
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    plan: free
+
+
