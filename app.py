@@ -19,10 +19,10 @@ import plotly.express as px
 # CARGA DE DATOS
 # ---------------------------------------------------
 warnings.filterwarnings("ignore") 
-shapefile_path = r"C:\Users\maria\OneDrive\Escritorio\Visualizacion_de_datos\MGN2021_DPTO_POLITICO\MGN_DPTO_POLITICO.shp"
+shapefile_path = "data/MGN_DPTO_POLITICO.shp"
 gdf = gpd.read_file(shapefile_path, encoding='utf-8')
 
-df = pd.read_csv(r'C:\Users\maria\OneDrive\Escritorio\Visualizacion_de_datos\Actividades\corte2\DataViz_despliegue_dash\data\MEN_ESTADISTICAS_EN_EDUCACION.csv', sep = ",")
+df = pd.read_csv("data/MEN_ESTADISTICAS_EN_EDUCACION.csv", sep=",")
 
 df = df[['AÑO', 'CÓDIGO_DEPARTAMENTO', 'DEPARTAMENTO', 'POBLACIÓN_5_16', 'DESERCIÓN', 'DESERCIÓN_TRANSICIÓN', 'DESERCIÓN_PRIMARIA', 'DESERCIÓN_SECUNDARIA', 'DESERCIÓN_MEDIA']]
 
@@ -462,3 +462,4 @@ def update_dashboard(year, dept_name):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run_server(debug=True, host="0.0.0.0", port=port)
+
