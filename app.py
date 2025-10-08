@@ -276,6 +276,9 @@ def update_dashboard(year, dept_name):
 
     # --- gdf para mapa ---
     gdf_year = gdf.copy()
+    # Reduce la complejidad geométrica al 5% del tamaño original
+    gdf_year["geometry"] = gdf_year["geometry"].simplify(tolerance=0.05, preserve_topology=True)
+
     if year_int is not None:
         gdf_year = gdf_year[gdf_year['ano'] == year_int]
     if dept_name:
@@ -307,7 +310,7 @@ def update_dashboard(year, dept_name):
     try:
         if not gdf_year.empty:
             gjson = json.loads(gdf_year.to_json())
-            fig_map = px.choropleth_mapbox(
+            fig_map = px.choropleth(
                 gdf_year,
                 geojson=gjson,
                 locations="codigo_departamento",
@@ -462,4 +465,5 @@ def update_dashboard(year, dept_name):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050))
     app.run_server(debug=True, host="0.0.0.0", port=port)
+
 
